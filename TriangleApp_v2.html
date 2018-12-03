@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<link rel="stylesheet" href="http://d5wfroyti11sa.cloudfront.net/prod/client/ts-11.1.0.min.css"/>
+	<script src="http://d5wfroyti11sa.cloudfront.net/prod/client/ts-11.1.0.min.js"></script>
+	<script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+</head>
+<body>
+	<header data-ts="TopBar"></header>
+	<main data-ts="Main">
+		<div data-ts="MainContent">
+			<article style="padding: 60px">
+				<h1>Type of triangle program</h1>
+				<form data-ts="Form" action="#">
+					<fieldset>
+						<label>
+							<span> First value </span>
+							<input type="text" name="firstValue"  onblur="populateX()" id="Value1" onClick="value=''" />
+						</label>
+						<label>
+							<span> Second value </span>
+							<input type="text" name="secondValue"  onblur="populateY()" id="Value2" onClick="value=''" />
+						</label>
+						<label>
+							<span> Third value </span>
+							<input type="text" name="thirdValue"  onblur="populateZ()" id="Value3" onClick="value=''"/>
+						</label>
+					</fieldset>
+					<button data-ts="Button" class="ts-secondary" onClick=getType()<!--{myTriangle.typeOfTriangle}-->Define your triangle</button>
+				</form>
+			</article>
+		</div>
+	</main>
+</body>
+<script type="text/javascript">
+	//Definition des valeurs. 
+	//valeur a mettre a nul let x ='';
+			let x = '';
+    		let y = '';
+    		let z = '';
+			function populateX(){
+				x = document.getElementById('Value1').value;
+			}
+			function populateY(){
+				y = document.getElementById('Value2').value;
+			}
+			function populateZ(){
+				z = document.getElementById('Value3').value;
+			}
+		class Triangle{
+			constructor(firstValue,secondValue,thirdValue){
+				this.firstValue = firstValue,
+				this.secondValue = secondValue,
+				this.thirdValue = thirdValue;
+			}
+			//Je crée une méthode qui me permet de définir le type de triangle. 
+
+			get typeOfTriangle(){
+			    return this.defineTypeOfTriangle();
+			}
+		    defineTypeOfTriangle() {
+		    	console.log(this.firstValue);
+		    	console.log(this.secondValue);
+		    	console.log(this.thirdValue);
+		        let triangleType;
+		        let message="This triangle is";
+		        //utiliser des validateurs 
+		        if(!isNaN(this.firstValue) && !isNaN(this.secondValue) && !isNaN(this.thirdValue) && this.firstValue!==0 && this.secondValue!==0 && this.thirdValue!==0 && this.firstValue!=='' && this.secondValue!=='' && this.thirdValue!==''){
+		            if(this.firstValue==this.secondValue && this.secondValue==this.thirdValue && this.firstValue==this.thirdValue){
+			            triangleType = "equilateral";
+			            //console.log(triangleType);
+			            }else if(this.firstValue==this.secondValue || this.secondValue==this.thirdValue || this.thirdValue==this.firstValue){
+			                triangleType = "isosceles";
+			                //console.log(triangleType);
+			                }else{
+			                       triangleType = "scalene";
+			                       //console.log(triangleType);  
+			                    	}
+				                    let infoMessage = ts.ui.Notification.info(message + ' ' + triangleType);
+				    }else{
+	                    let errorMessage = ts.ui.Notification.error('Enter a number non null, please.');
+	                    }
+	                return this.firstValue = document.getElementById('Value1').value;
+		        }
+    	}
+    	// je prends en compte les événements html 
+    	// c'est procédurale
+			function getType(){
+				let myTriangle = new Triangle(x,y,z);
+				myTriangle.typeOfTriangle
+			}
+	</script>
+</html>
