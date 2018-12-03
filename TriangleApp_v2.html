@@ -66,27 +66,21 @@
 			//I create the method defineTypeOfTriangle in order to define the type of triangle. 
 
 		    defineTypeOfTriangle() {
-		    	//console.log(this.firstValue);
-		    	//console.log(this.secondValue);
-		    	//console.log(this.thirdValue);
 		        let triangleType;
 		        let message="This triangle is";
 		        if(!isNaN(this.firstValue) && !isNaN(this.secondValue) && !isNaN(this.thirdValue) && this.firstValue!==0 && this.secondValue!==0 && this.thirdValue!==0 && this.firstValue!=='' && this.secondValue!=='' && this.thirdValue!==''){
 		            if(this.firstValue==this.secondValue && this.secondValue==this.thirdValue && this.firstValue==this.thirdValue){
 			            triangleType = "equilateral";
-			            //console.log(triangleType);
-			            }else if(this.firstValue==this.secondValue || this.secondValue==this.thirdValue || this.thirdValue==this.firstValue){
-			                triangleType = "isosceles";
-			                //console.log(triangleType);
-			                }else{
-			                       triangleType = "scalene";
-			                       //console.log(triangleType);  
-			                    	}
-				                    let infoMessage = ts.ui.Notification.info(message + ' ' + triangleType);
-				    }else{
-	                    let errorMessage = ts.ui.Notification.error('Enter a number non null, please.');
-	                    }
-		        }
+			        }else if(this.firstValue==this.secondValue || this.secondValue==this.thirdValue || this.thirdValue==this.firstValue){
+			            triangleType = "isosceles";
+			        }else{
+                    	triangleType = "scalene";
+			        }
+					let infoMessage = ts.ui.Notification.info(message + ' ' + triangleType);
+				}else{
+	                let errorMessage = ts.ui.Notification.error('Enter a number non null, please.');
+	            }
+		    }
     	}
     	//I create the function that will create a new instance of my class Triangle and execute the methode that is in it. 
 			function getType(){
